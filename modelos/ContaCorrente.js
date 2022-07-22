@@ -1,16 +1,35 @@
 const imprimir = console.log;
 
-export class contaCorrente {
-    cliente;
+import { Cliente } from "./Cliente.js";
+
+export class ContaCorrente {
+	_cliente;
 	agencia;
 
 	_saldo = 0;
-
-	constructor(cliente, agencia, saldo=0){
+		
+	constructor(cliente, agencia, saldo = 0) {
 		this.cliente = cliente;
 		this.agencia = agencia;
 		this._saldo = saldo;
 	}
+	
+	set cliente(novoCliente) {
+		if (novoCliente instanceof Cliente) {
+			this._cliente = novoCliente;
+		}
+	}
+	
+	get cliente(){
+		return this._cliente;
+	}
+	
+	get saldo(){
+		return this._saldo;
+	}
+	
+
+
 
 	sacar(valor) {
 		if (valor > this._saldo) {
@@ -20,7 +39,7 @@ export class contaCorrente {
 			throw new Error(`Valor negativo\n`);
 		}
 		this._saldo -= valor;
-        imprimir(`Você`,this.cliente,`fez um saque no valor de R$${valor}\n`);
+		imprimir(`Você`, this.cliente, `fez um saque no valor de R$${valor}\n`);
 		return;
 	}
 
@@ -29,18 +48,18 @@ export class contaCorrente {
 			return;
 		}
 		this._saldo += valor;
-        imprimir(`Você `,this.cliente, `depositou R$${valor}`);
-		imprimir('O saldo atual é de: R$',this._saldo);
-        return;
+		imprimir(`Você `, this._cliente, `depositou R$${valor}`);
+		imprimir('O saldo atual é de: R$', this._saldo);
+		return;
 	}
 
-    transferir(valor, conta){
-        try {
-			this.sacar(valor);			
+	transferir(valor, conta) {
+		try {
+			this.sacar(valor);
 		} catch (error) {
 			imprimir(error.message);
 			return;
 		}
-        conta.depositar(valor);
-    }
+		conta.depositar(valor);
+	}
 }

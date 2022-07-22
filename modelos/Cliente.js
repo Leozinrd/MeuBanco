@@ -1,11 +1,15 @@
 const imprimir = console.log;
 
-export class cliente {
+export class Cliente {
     nome;
-    cpf;
+    _cpf;
 
-    constructor(nome, cpf){
+    constructor(nome, cpf) {
         this.nome = nome;
-        this.cpf = cpf;
+        this._cpf = cpf;
     }
+    get cpf() {
+        return this._cpf;
+    }
+
 }

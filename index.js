@@ -1,37 +1,38 @@
 const imprimir = console.log;
 
-import {cliente} from "./modelos/Cliente.js";
+import {Cliente} from "./modelos/Cliente.js";
 
-import {contaCorrente} from "./modelos/ContaCorrente.js";
+import {ContaCorrente} from "./modelos/ContaCorrente.js";
 
 
 // Criando o cliente
-const cliente1 = new cliente(`Leonardo`, 61177777771);
+const cliente1 = new Cliente(`Leonardo`, 61177777771);
 
-const cliente2 = new cliente(`Alice`, 61177777772);
+const cliente2 = new Cliente(`Alice`, 61177777772);
 
-const cliente3 = new cliente(`Luciana`, 61177777773);
-
+const cliente3 = new Cliente(`Luciana`, 61177777773);
 
 // Criando a conta corrente
-const contaCorrenteLeonardo = new contaCorrente(cliente1, 1001);
+const ContaCorrenteLeonardo = new ContaCorrente(cliente1, 1001);
 // Assossiando cliente1 a contaCorrenteLeonardo
 
-const contaCorrenteAlice = new contaCorrente(cliente2, 1001);
+const ContaCorrenteAlice = new ContaCorrente(0, 1001);
 // Assossiando cliente1 a contaCorrenteAlice
 
-const contaCorrenteLuciana = new contaCorrente(cliente3, 1003);
+const ContaCorrenteLuciana = new ContaCorrente(cliente3, 1003);
 // Assossiando cliente1 a contaCorrenteLuciana
 
 
 imprimir('\n', cliente1, '\n', cliente2, '\n', cliente3,'\n');
 
-contaCorrenteLeonardo.depositar(100);
+imprimir('\n', ContaCorrenteLeonardo, '\n', ContaCorrenteAlice, '\n', ContaCorrenteLuciana,'\n');
+
+ContaCorrenteLeonardo.depositar(100);
 
 imprimir('\n');
 
-contaCorrenteLeonardo.transferir(200, contaCorrenteLuciana);
+ContaCorrenteLeonardo.transferir(200, ContaCorrenteLuciana);
 
-imprimir(contaCorrenteLeonardo,`\n`)
+imprimir(ContaCorrenteLeonardo,`\n`)
 
-imprimir(contaCorrenteLuciana,`\n`);
+imprimir(ContaCorrenteLuciana,`\n`);
